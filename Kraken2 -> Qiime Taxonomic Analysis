@@ -37,51 +37,8 @@ qiime tools import \
   --output-path taxa.qza
   
 ##--------------------------------
-## Step 3: Collpase table to Phyla (3), Genus(7), or Species(8) level 
-## -------------------------------
-
-qiime taxa collapse \
-  --i-table table.qza \
-  --i-taxonomy taxa.qza \
-  --p-level 8 \
-  --o-collapsed-table species.qza 
-  
-##--------------------------------
-## Step 4: Summarize the table to determine read counts 
-## -------------------------------
-
-### Summarize feature table
-qiime feature-table summarize \
-  --i-table species.qza \
-  --o-visualization species_summary
-  
-### Export summary and determine what feature frequency (a raw number) is 1% of total feature frequency from summary
-qiime tools export \
-  --input-path species_summary.qzv \
-  --output-path species_summary
-
-##--------------------------------
-## Step 5: Filter out features (taxa) that have less than <1% total abundance
-## -------------------------------
-
-qiime feature-table filter-features \
-  --i-table species.qza \
-  --p-min-frequency 2679650 \
-  --o-filtered-table freq_filtered_species.qza
-  
-##--------------------------------
-## Step 6: Convert frequency table to relative abundance table
+## Step 3: Summarize original frequency feature table
 ## -------------------------------  
-
-qiime feature-table relative-frequency \
-  --i-table freq_filtered_species.qza \
-  --o-relative-frequency-table rf_filtered_species.qza
-  
-##--------------------------------
-## Step 7: Create Barchart
-## -------------------------------  
-
-### Perform step 4: summarize original frequency feature table (without collapse):
 
 ### Summarize feature table
 qiime feature-table summarize \
@@ -93,12 +50,18 @@ qiime tools export \
   --input-path overall_summary.qzv \
   --output-path overall_summary
   
-### Perform step 5: filter out features (taxa) that have less than <1% total abundance
+##--------------------------------
+## Step 4: Filter out features (taxa) that have less than <1% total abundance
+## -------------------------------  
+
 qiime feature-table filter-features \
   --i-table table.qza \
   --p-min-frequency 2679650 \
   --o-filtered-table freq_filtered_table.qza
-  
+
+##--------------------------------
+## Step 5: Visualize Barchart
+## ------------------------------- 
 ### Visualize barchart
 qiime taxa barplot \
   --i-table freq_filtered_table.qza \
@@ -107,7 +70,7 @@ qiime taxa barplot \
   --o-visualization taxa-bar-plots.qzv
   
 ##--------------------------------
-## Step 8: View barchart in qiime2 viewer
+## Step 6: View barchart in qiime2 viewer
 ## -------------------------------   
 
 ### Filter by taxonomic level and metadata
