@@ -66,7 +66,7 @@ qiime feature-table filter-features \
 qiime taxa barplot \
   --i-table freq_filtered_table.qza \
   --i-taxonomy taxa.qza \
-  --m-metadata-file sample-metadata.tsv \
+  --m-metadata-file sample-metadata.txt \
   --o-visualization taxa-bar-plots.qzv
   
 ##--------------------------------
