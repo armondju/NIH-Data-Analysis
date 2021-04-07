@@ -1,6 +1,6 @@
 Qiime Taxonomic Analysis (after Kraken2)
 
-# Create Taxonomic Abundance Barcharts
+# Create Taxonomic Abundance Barcharts (All Kingdoms, >1% abundance)
 
 ## -------------------------------
 ## Step 1: Convert raw frequency & taxonomy (classic) tables from Kraken2 to .biom 
@@ -74,3 +74,5 @@ qiime taxa barplot \
 ## -------------------------------   
 
 ### Filter by taxonomic level and metadata
+
+# Create Taxonomic Abundance Barcharts (Bacteria only, >1% abundance)
