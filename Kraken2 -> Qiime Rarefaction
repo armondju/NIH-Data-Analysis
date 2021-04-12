@@ -1,0 +1,69 @@
+Qiime Taxonomic Analysis (after Kraken2)
+
+# Create Rarefaction Curves (All Kingdoms)
+
+##--------------------------------
+## Step 1: Summarize overall frequency feature table
+## -------------------------------  
+
+### Summarize feature table
+qiime feature-table summarize \
+  --i-table table.qza \
+  --o-visualization overall_summary
+  
+### Export summary 
+qiime tools export \
+  --input-path overall_summary.qzv \
+  --output-path overall_summary
+  
+## Determine --p-max-depth: look at "frequency per sample" and choose value around median or max frequency. Increase if needed (max freq per sample)
+
+##--------------------------------
+## Step 2: Create Rarefaction Plot
+## -------------------------------  
+
+qiime diversity alpha-rarefaction \
+  --i-table table.qza \
+  --p-max-depth TBD \
+  --m-metadata-file sample-metadata.tsv \
+  --o-visualization overall_alpha-rarefaction.qzv
+  
+##--------------------------------
+## Step 3: Visualize rarefaction plot in qiime2 viewer
+## -------------------------------   
+
+### View by shannon and observed features and by metadata
+
+# Create Rarefaction Curves (Bacteria Only)
+
+##--------------------------------
+## Step 1: Summarize bacteria frequency feature table
+## -------------------------------  
+
+### Summarize feature table
+qiime feature-table summarize \
+  --i-table table.qza \
+  --o-visualization overall_summary
+  
+### Export summary 
+qiime tools export \
+  --input-path overall_summary.qzv \
+  --output-path overall_summary
+  
+## Determine --p-max-depth: look at "frequency per sample" and choose value around median or max frequency. Increase if needed (max freq per sample)
+
+##--------------------------------
+## Step 2: Create Rarefaction Plot
+## -------------------------------  
+
+qiime diversity alpha-rarefaction \
+  --i-table table.qza \
+  --p-max-depth TBD \
+  --m-metadata-file sample-metadata.tsv \
+  --o-visualization overall_alpha-rarefaction.qzv
+  
+##--------------------------------
+## Step 3: Visualize rarefaction plot in qiime2 viewer
+## -------------------------------   
+
+## View by shannon and observed features and by metadata
