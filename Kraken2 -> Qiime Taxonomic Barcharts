@@ -112,3 +112,90 @@ qiime taxa barplot \
 ## -------------------------------   
 
 ### Filter by taxonomic level and metadata. Download svg file of legend and plot. Edit in Inkscape or other SVG editor.   
+
+# Create Taxonomic Abundance Barcharts (Eukaryota only)
+
+## -------------------------------
+## Step 1: Filter features for eukaryota taxa only  
+## -------------------------------
+
+### Filter out archaea, bacteria, and viruses
+qiime taxa filter-table \
+  --i-table table.qza \
+  --i-taxonomy taxonomy.qza \
+  --p-include eukaryota \
+  --o-filtered-table eukaryota_only.qza
+  
+##--------------------------------
+## Step 2: Visualize Barchart
+## ------------------------------- 
+### Visualize barchart
+qiime taxa barplot \
+  --i-table eukaryota_only.qza \
+  --i-taxonomy taxa.qza \
+  --m-metadata-file sample-metadata.txt \
+  --o-visualization eukaryota_only_bar.qzv 
+  
+##--------------------------------
+## Step 3: View barchart in qiime2 viewer
+## -------------------------------   
+
+### Filter by taxonomic level and metadata. Download svg file of legend and plot. Edit in Inkscape or other SVG editor.   
+
+# Create Taxonomic Abundance Barcharts (Viruses only)
+
+## -------------------------------
+## Step 1: Filter features for eukaryota taxa only  
+## -------------------------------
+
+### Filter out archaea, bacteria, and eukaryota
+qiime taxa filter-table \
+  --i-table table.qza \
+  --i-taxonomy taxonomy.qza \
+  --p-include viruses \
+  --o-filtered-table viruses_only.qza
+  
+##--------------------------------
+## Step 2: Visualize Barchart
+## ------------------------------- 
+### Visualize barchart
+qiime taxa barplot \
+  --i-table viruses_only.qza \
+  --i-taxonomy taxa.qza \
+  --m-metadata-file sample-metadata.txt \
+  --o-visualization viruses_only_bar.qzv 
+  
+##--------------------------------
+## Step 3: View barchart in qiime2 viewer
+## -------------------------------   
+
+### Filter by taxonomic level and metadata. Download svg file of legend and plot. Edit in Inkscape or other SVG editor.   
+
+# Create Taxonomic Abundance Barcharts (Archaea only)
+
+## -------------------------------
+## Step 1: Filter features for eukaryota taxa only  
+## -------------------------------
+
+### Filter out archaea, bacteria, and viruses
+qiime taxa filter-table \
+  --i-table table.qza \
+  --i-taxonomy taxonomy.qza \
+  --p-include archaea \
+  --o-filtered-table archaea_only.qza
+  
+##--------------------------------
+## Step 2: Visualize Barchart
+## ------------------------------- 
+### Visualize barchart
+qiime taxa barplot \
+  --i-table archaea_only.qza \
+  --i-taxonomy taxa.qza \
+  --m-metadata-file sample-metadata.txt \
+  --o-visualization archaea_only_bar.qzv 
+  
+##--------------------------------
+## Step 3: View barchart in qiime2 viewer
+## -------------------------------   
+
+### Filter by taxonomic level and metadata. Download svg file of legend and plot. Edit in Inkscape or other SVG editor.   
