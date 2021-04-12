@@ -36,4 +36,4 @@ qiime diversity alpha-group-significance \
 ## Step 3: Visualize in qiim2 viewer
 ## -------------------------------
   
-### View by metadata   
+### View boxplots by metadata   
