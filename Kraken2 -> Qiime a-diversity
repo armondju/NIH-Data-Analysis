@@ -18,3 +18,22 @@ qiime diversity core-metrics \
 ## Step 2: Test for relationships between a-diversity and metadata
 ## -------------------------------
 
+### Change directory 
+
+### Evenness metric
+qiime diversity alpha-group-significance \
+  --i-alpha-diversity core-metrics-results/evenness_vector.qza \
+  --m-metadata-file sample-metadata.txt \
+  --o-visualization core-metrics-results/evenness-group-significance.qzv
+  
+### Shannon metric
+qiime diversity alpha-group-significance \
+  --i-alpha-diversity core-metrics-results/shannon_vector.qza \
+  --m-metadata-file sample-metadata.txt \
+  --o-visualization core-metrics-results/shannon_group-significance.qzv
+  
+## -------------------------------
+## Step 3: Visualize in qiim2 viewer
+## -------------------------------
+  
+### View by metadata   
