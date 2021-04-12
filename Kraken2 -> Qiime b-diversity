@@ -1,1 +1,53 @@
+Qiime Taxonomic Analysis (after Kraken2)
 
+# Create Beta Diversity boxplots, PCoA and metrics
+
+## -------------------------------
+## Step 1: Test for relationships between b-diversity and metadata
+## -------------------------------
+
+### Change directory 
+
+### Bray_Curtis metric
+qiime diversity beta-group-significance \
+  --i-distance-matrix core-metrics-results/bray_curtis_distance_matrix.qza \
+  --m-metadata-file sample-metadata.txt \
+  --m-metadata-column group \
+  --o-visualization core-metrics-results/bray_curtis_group_significance.qzv \
+  --p-pairwise
+  
+### Jaccard metric
+qiime diversity beta-group-significance \
+  --i-distance-matrix core-metrics-results/jaccard_distance_matrix.qza \
+  --m-metadata-file sample-metadata.txt \
+  --m-metadata-column group \
+  --o-visualization core-metrics-results/jaccard_group_significance.qzv \
+  --p-pairwise
+  
+## -------------------------------
+## Step 3: Visualize in qiime2 viewer
+## -------------------------------
+  
+### View boxplots   
+
+## -------------------------------
+## Step 4: Create PCoA Plots (custom axes)
+## -------------------------------
+
+### Bray_Curtis
+qiime emperor plot \
+  --i-pcoa core-metrics-results/bray_curtis_pcoa_results.qza \
+  --m-metadata-file sample-metadata.txt \
+  --p-custom-axes group \
+  --o-visualization core-metrics-results/bray-curtis-emperor-group.qzv
+  
+### Jaccard
+qiime emperor plot \
+  --i-pcoa core-metrics-results/jaccard_pcoa_results.qza \
+  --m-metadata-file sample-metadata.txt \
+  --p-custom-axes group \
+  --o-visualization core-metrics-results/jaccard-emperor-group.qzv
+  
+## -------------------------------
+## Step 5: Visualize in qiime2 viewer
+## -------------------------------  
