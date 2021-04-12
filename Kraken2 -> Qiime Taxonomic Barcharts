@@ -73,6 +73,42 @@ qiime taxa barplot \
 ## Step 6: View barchart in qiime2 viewer
 ## -------------------------------   
 
-### Filter by taxonomic level and metadata
+### Filter by taxonomic level and metadata. Download svg file of legend and plot. Edit in Inkscape or other SVG editor. 
 
 # Create Taxonomic Abundance Barcharts (Bacteria only, >1% abundance)
+
+## -------------------------------
+## Step 1: Filter features for bacteria taxa only  
+## -------------------------------
+
+### Filter out archaea, eukaryota, and viruses
+qiime taxa filter-table \
+  --i-table table.qza \
+  --i-taxonomy taxonomy.qza \
+  --p-exclude archaea,eukaryota,viruses \
+  --o-filtered-table bacteria_only.qza
+  
+##--------------------------------
+## Step 2: Filter out features (taxa) that have less than <1% total abundance
+## -------------------------------  
+
+qiime feature-table filter-features \
+  --i-table bacteria_only.qza \
+  --p-min-frequency 2679650 \
+  --o-filtered-table bacteria_freq_filtered_table.qza  
+  
+##--------------------------------
+## Step 3: Visualize Barchart
+## ------------------------------- 
+### Visualize barchart
+qiime taxa barplot \
+  --i-table bacteria_freq_filtered_table.qza \
+  --i-taxonomy taxa.qza \
+  --m-metadata-file sample-metadata.txt \
+  --o-visualization bacteria_only_bar.qzv 
+  
+##--------------------------------
+## Step 4: View barchart in qiime2 viewer
+## -------------------------------   
+
+### Filter by taxonomic level and metadata. Download svg file of legend and plot. Edit in Inkscape or other SVG editor.   
