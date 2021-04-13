@@ -24,8 +24,8 @@ qiime tools export \
 
 qiime diversity alpha-rarefaction \
   --i-table table.qza \
-  --p-max-depth TBD \
-  --m-metadata-file sample-metadata.tsv \
+  --p-max-depth 6400000 \
+  --m-metadata-file sample-metadata.txt \
   --o-visualization overall_alpha-rarefaction.qzv
   
 ##--------------------------------
@@ -58,8 +58,8 @@ qiime tools export \
 
 qiime diversity alpha-rarefaction \
   --i-table bacteria_freq_filtered_table.qza \
-  --p-max-depth TBD \
-  --m-metadata-file sample-metadata.tsv \
+  --p-max-depth 500000 \
+  --m-metadata-file sample-metadata.txt \
   --o-visualization bacteria_alpha-rarefaction.qzv
   
 ##--------------------------------
