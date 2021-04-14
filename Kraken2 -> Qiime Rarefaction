@@ -152,7 +152,7 @@ qiime tools export \
   --input-path viruses_only_summary.qzv \
   --output-path viruses_only_summary
   
-### Determine --p-max-depth: look at "frequency per sample" and choose value around median or max frequency. Increase if needed (max freq per sample)
+### Determine --p-max-depth look at "frequency per sample" and choose value around median or max frequency. Increase if needed (max freq per sample)
 
 ##--------------------------------
 ## Step 2: Create Rarefaction Plot
