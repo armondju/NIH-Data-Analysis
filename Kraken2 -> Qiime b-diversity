@@ -31,7 +31,7 @@ qiime diversity beta-group-significance \
 ### View boxplots   
 
 ## -------------------------------
-## Step 4: Create PCoA Plots (custom axes)
+## Step 4: Create PCoA Plots (custom axes) SKIP THIS, JUST VIEW EMPEROR PLOTS CREATED FROM METRICS
 ## -------------------------------
 
 ### Bray_Curtis
