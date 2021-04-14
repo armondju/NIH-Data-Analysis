@@ -24,8 +24,8 @@ qiime tools export \
 
 qiime diversity alpha-rarefaction \
   --i-table table.qza \
-  --p-max-depth TBD \
-  --m-metadata-file sample-metadata.tsv \
+  --p-max-depth 6400000 \
+  --m-metadata-file sample-metadata.txt \
   --o-visualization overall_alpha-rarefaction.qzv
   
 ##--------------------------------
@@ -37,18 +37,18 @@ qiime diversity alpha-rarefaction \
 # Create Rarefaction Curves (Bacteria Only)
 
 ##--------------------------------
-## Step 1: Summarize bacteria frequency feature table
+## Step 1: Summarize bacteria only table
 ## -------------------------------  
 
 ### Summarize feature table
 qiime feature-table summarize \
-  --i-table bacteria_freq_filtered_table.qza \
-  --o-visualization bacteria_freq_filtered_table_summary
+  --i-table bacteria_only.qza \
+  --o-visualization bacteria_only_summary
   
 ### Export summary 
 qiime tools export \
-  --input-path bacteria_freq_filtered_table_summary.qzv \
-  --output-path bacteria_freq_filtered_table_summary
+  --input-path bacteria_only_summary.qzv \
+  --output-path bacteria_only_summary
   
 ### Determine --p-max-depth: look at "frequency per sample" and choose value around median or max frequency. Increase if needed (max freq per sample)
 
@@ -57,9 +57,9 @@ qiime tools export \
 ## -------------------------------  
 
 qiime diversity alpha-rarefaction \
-  --i-table bacteria_freq_filtered_table.qza \
-  --p-max-depth TBD \
-  --m-metadata-file sample-metadata.tsv \
+  --i-table bacteria_only.qza \
+  --p-max-depth 500000 \
+  --m-metadata-file sample-metadata.txt \
   --o-visualization bacteria_alpha-rarefaction.qzv
   
 ##--------------------------------
@@ -152,7 +152,7 @@ qiime tools export \
   --input-path viruses_only_summary.qzv \
   --output-path viruses_only_summary
   
-### Determine --p-max-depth: look at "frequency per sample" and choose value around median or max frequency. Increase if needed (max freq per sample)
+### Determine --p-max-depth look at "frequency per sample" and choose value around median or max frequency. Increase if needed (max freq per sample)
 
 ##--------------------------------
 ## Step 2: Create Rarefaction Plot
