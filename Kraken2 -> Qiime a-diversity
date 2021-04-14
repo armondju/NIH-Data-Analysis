@@ -10,7 +10,7 @@ Qiime Taxonomic Analysis (after Kraken2)
 ### Calculate diversity metrics (alpha + beta)
 qiime diversity core-metrics \
   --i-table table.qza \
-  --p-sampling-depth TBD \
+  --p-sampling-depth 1000000 \
   --m-metadata-file sample-metadata.txt \
   --output-dir core-metrics-results
 
@@ -31,7 +31,13 @@ qiime diversity alpha-group-significance \
   --i-alpha-diversity core-metrics-results/shannon_vector.qza \
   --m-metadata-file sample-metadata.txt \
   --o-visualization core-metrics-results/shannon_group-significance.qzv
-  
+
+### Observed OTUs metric
+qiime diversity alpha-group-significance \
+  --i-alpha-diversity core-metrics-results/observed_otus_vector.qza \
+  --m-metadata-file sample-metadata.txt \
+  --o-visualization core-metrics-results/observed_otus_group-significance.qzv
+
 ## -------------------------------
 ## Step 3: Visualize in qiim2 viewer
 ## -------------------------------
