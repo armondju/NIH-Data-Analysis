@@ -127,17 +127,40 @@ qiime taxa filter-table \
   --o-filtered-table eukaryota_only.qza
   
 ##--------------------------------
-## Step 2: Visualize Barchart
+## Step 2: Summarize eukaryota frequency feature table
+## -------------------------------  
+
+### Summarize feature table
+qiime feature-table summarize \
+  --i-table eukaryota_only.qza \
+  --o-visualization eukaryota_summary
+  
+### Export summary and determine what feature frequency (a raw number) is 1% of total feature frequency from summary
+qiime tools export \
+  --input-path eukaryota_summary.qzv \
+  --output-path eukaryota_summary
+  
+##--------------------------------
+## Step 3: Filter out features (taxa) that aren't top-20
+## -------------------------------  
+
+qiime feature-table filter-features \
+  --i-table eukaryota_only.qza \
+  --p-min-frequency 400 \
+  --o-filtered-table freq_eukaryota_only.qza
+  
+##--------------------------------
+## Step 4: Visualize Barchart
 ## ------------------------------- 
 ### Visualize barchart
 qiime taxa barplot \
-  --i-table eukaryota_only.qza \
+  --i-table freq_eukaryota_only.qza \
   --i-taxonomy taxa.qza \
-  --m-metadata-file sample-metadata.txt \
-  --o-visualization eukaryota_only_bar.qzv 
+  --m-metadata-file sample-metadata_2.txt \
+  --o-visualization freq_eukaryota_only_bar.qzv 
   
 ##--------------------------------
-## Step 3: View barchart in qiime2 viewer
+## Step 5: View barchart in qiime2 viewer
 ## -------------------------------   
 
 ### Filter by taxonomic level and metadata. Download svg file of legend and plot. Edit in Inkscape or other SVG editor.   
@@ -145,7 +168,7 @@ qiime taxa barplot \
 # Create Taxonomic Abundance Barcharts (Viruses only)
 
 ## -------------------------------
-## Step 1: Filter features for eukaryota taxa only  
+## Step 1: Filter features for viruses taxa only  
 ## -------------------------------
 
 ### Filter out archaea, bacteria, and eukaryota
@@ -156,17 +179,40 @@ qiime taxa filter-table \
   --o-filtered-table viruses_only.qza
   
 ##--------------------------------
-## Step 2: Visualize Barchart
+## Step 2: Summarize viruses frequency feature table
+## -------------------------------  
+
+### Summarize feature table
+qiime feature-table summarize \
+  --i-table viruses_only.qza \
+  --o-visualization viruses_summary
+  
+### Export summary and determine what feature frequency (a raw number) is 1% of total feature frequency from summary
+qiime tools export \
+  --input-path viruses_summary.qzv \
+  --output-path viruses_summary
+  
+##--------------------------------
+## Step 3: Filter out features (taxa) that aren't top-20
+## -------------------------------  
+
+qiime feature-table filter-features \
+  --i-table viruses_only.qza \
+  --p-min-frequency 157 \
+  --o-filtered-table freq_viruses_only.qza
+  
+##--------------------------------
+## Step 4: Visualize Barchart
 ## ------------------------------- 
 ### Visualize barchart
 qiime taxa barplot \
-  --i-table viruses_only.qza \
+  --i-table freq_viruses_only.qza \
   --i-taxonomy taxa.qza \
-  --m-metadata-file sample-metadata.txt \
-  --o-visualization viruses_only_bar.qzv 
+  --m-metadata-file sample-metadata_2.txt \
+  --o-visualization freq_viruses_only_bar.qzv 
   
 ##--------------------------------
-## Step 3: View barchart in qiime2 viewer
+## Step 5: View barchart in qiime2 viewer
 ## -------------------------------   
 
 ### Filter by taxonomic level and metadata. Download svg file of legend and plot. Edit in Inkscape or other SVG editor.   
@@ -174,25 +220,49 @@ qiime taxa barplot \
 # Create Taxonomic Abundance Barcharts (Archaea only)
 
 ## -------------------------------
-## Step 1: Filter features for eukaryota taxa only  
+## Step 1: Filter features for archaea taxa only  
 ## -------------------------------
 
-### Filter out archaea, bacteria, and viruses
+### Filter out eukaryota, bacteria, and viruses
 qiime taxa filter-table \
   --i-table table.qza \
   --i-taxonomy taxa.qza \
   --p-include archaea \
   --o-filtered-table archaea_only.qza
+ 
+##--------------------------------
+## Step 2: Summarize archaea frequency feature table
+## -------------------------------  
+
+### Summarize feature table
+qiime feature-table summarize \
+  --i-table archaea_only.qza \
+  --o-visualization archaea_summary
   
+### Export summary and determine what feature frequency (a raw number) is 1% of total feature frequency from summary
+qiime tools export \
+  --input-path archaea_summary.qzv \
+  --output-path archaea_summary
+  
+##--------------------------------
+## Step 3: Filter out features (taxa) that aren't top-20
+## -------------------------------  
+
+qiime feature-table filter-features \
+  --i-table archaea_only.qza \
+  --p-min-frequency 112 \
+  --o-filtered-table freq_archaea_only.qza
+  
+
 ##--------------------------------
 ## Step 2: Visualize Barchart
 ## ------------------------------- 
 ### Visualize barchart
 qiime taxa barplot \
-  --i-table archaea_only.qza \
+  --i-table freq_archaea_only.qza \
   --i-taxonomy taxa.qza \
-  --m-metadata-file sample-metadata.txt \
-  --o-visualization archaea_only_bar.qzv 
+  --m-metadata-file sample-metadata_2.txt \
+  --o-visualization freq_archaea_only_bar.qzv 
   
 ##--------------------------------
 ## Step 3: View barchart in qiime2 viewer
