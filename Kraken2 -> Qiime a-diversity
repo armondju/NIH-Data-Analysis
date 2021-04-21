@@ -1,6 +1,6 @@
 Qiime Taxonomic Analysis (after Kraken2)
 
-# Create Alpha Diversity boxplots and metrics (genus and species level tables)
+# Create Alpha Diversity boxplots and metrics (genus level table)
 
 ## -------------------------------
 ## Step 1: Collapse overal freq table to genus level
@@ -12,6 +12,20 @@ qiime taxa collapse \
   --p-level 7 \
   --o-collapsed-table ovrerall_genus_table.qza 
 
+##--------------------------------
+## Step 2: Summarize genus level frequency feature table
+## -------------------------------  
+
+### Summarize feature table
+qiime feature-table summarize \
+  --i-table ovrerall_genus_table.qza  \
+  --o-visualization ovrerall_genus_table_summary
+  
+### Export summary and determine what sampling depth is to include all samples
+qiime tools export \
+  --input-path ovrerall_genus_table_summary.qzv \
+  --output-path ovrerall_genus_table_summary
+  
 ## -------------------------------
 ## Step 2: Calculate diversity metrics (no phylogenetic tree)
 ## -------------------------------
@@ -19,34 +33,102 @@ qiime taxa collapse \
 ### Determine sampling depth from rarefaction curves/summary table
 ### Calculate diversity metrics (alpha + beta)
 qiime diversity core-metrics \
-  --i-table table.qza \
-  --p-sampling-depth 1000000 \
-  --m-metadata-file sample-metadata.txt \
-  --output-dir core-metrics-results
+  --i-table ovrerall_genus_table.qza \
+  --p-sampling-depth 742170 \
+  --m-metadata-file sample-metadata_2.txt \
+  --output-dir core-metrics-results_genus
 
 ## -------------------------------
-## Step 2: Test for relationships between a-diversity and metadata
+## Step 3: Test for relationships between a-diversity and metadata
 ## -------------------------------
 
 ### Change directory 
 
 ### Evenness metric
 qiime diversity alpha-group-significance \
-  --i-alpha-diversity core-metrics-results/evenness_vector.qza \
-  --m-metadata-file sample-metadata.txt \
-  --o-visualization core-metrics-results/evenness-group-significance.qzv
+  --i-alpha-diversity core-metrics-results_genus/evenness_vector.qza \
+  --m-metadata-file sample-metadata_2.txt \
+  --o-visualization core-metrics-results_genus/evenness-group-significance.qzv
   
 ### Shannon metric
 qiime diversity alpha-group-significance \
-  --i-alpha-diversity core-metrics-results/shannon_vector.qza \
-  --m-metadata-file sample-metadata.txt \
-  --o-visualization core-metrics-results/shannon_group-significance.qzv
+  --i-alpha-diversity core-metrics-results_genus/shannon_vector.qza \
+  --m-metadata-file sample-metadata_2.txt \
+  --o-visualization core-metrics-results_genus/shannon_group-significance.qzv
 
 ### Observed OTUs metric
 qiime diversity alpha-group-significance \
-  --i-alpha-diversity core-metrics-results/observed_otus_vector.qza \
-  --m-metadata-file sample-metadata.txt \
-  --o-visualization core-metrics-results/observed_otus_group-significance.qzv
+  --i-alpha-diversity core-metrics-results_genus/observed_otus_vector.qza \
+  --m-metadata-file sample-metadata_2.txt \
+  --o-visualization core-metrics-results_genus/observed_otus_group-significance.qzv
+
+## -------------------------------
+## Step 3: Visualize in qiim2 viewer
+## -------------------------------
+  
+### View boxplots by metadata   
+
+# Create Alpha Diversity boxplots and metrics (species level table)
+
+## -------------------------------
+## Step 1: Collapse overal freq table to species level
+## -------------------------------
+
+qiime taxa collapse \
+  --i-table table.qza \
+  --i-taxonomy taxa.qza \
+  --p-level 8 \
+  --o-collapsed-table ovrerall_species_table.qza 
+
+##--------------------------------
+## Step 2: Summarize species level frequency feature table
+## -------------------------------  
+
+### Summarize feature table
+qiime feature-table summarize \
+  --i-table ovrerall_species_table.qza \
+  --o-visualization ovrerall_species_table_summary
+  
+### Export summary and determine what sampling depth is to include all samples
+qiime tools export \
+  --input-path ovrerall_species_table_summary.qzv \
+  --output-path ovrerall_species_table_summary
+  
+## -------------------------------
+## Step 3: Calculate diversity metrics (no phylogenetic tree)
+## -------------------------------
+
+### Determine sampling depth from rarefaction curves/summary table
+### Calculate diversity metrics (alpha + beta)
+qiime diversity core-metrics \
+  --i-table ovrerall_species_table.qza \
+  --p-sampling-depth 742170 \
+  --m-metadata-file sample-metadata_2.txt \
+  --output-dir core-metrics-results_species
+
+## -------------------------------
+## Step 3: Test for relationships between a-diversity and metadata
+## -------------------------------
+
+### Change directory 
+
+### Evenness metric
+qiime diversity alpha-group-significance \
+  --i-alpha-diversity core-metrics-results_species/evenness_vector.qza \
+  --m-metadata-file sample-metadata_2.txt \
+  --o-visualization core-metrics-results_species/evenness-group-significance.qzv
+  
+### Shannon metric
+qiime diversity alpha-group-significance \
+  --i-alpha-diversity core-metrics-results_species/shannon_vector.qza \
+  --m-metadata-file sample-metadata_2.txt \
+  --o-visualization core-metrics-results_species/shannon_group-significance.qzv
+
+### Observed OTUs metric
+qiime diversity alpha-group-significance \
+  --i-alpha-diversity core-metrics-results_species/observed_otus_vector.qza \
+  --m-metadata-file sample-metadata_2.txt \
+  --o-visualization core-metrics-results_species/observed_otus_group-significance.qzv
 
 ## -------------------------------
 ## Step 3: Visualize in qiim2 viewer
