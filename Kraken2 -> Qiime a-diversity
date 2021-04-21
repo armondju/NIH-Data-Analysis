@@ -1,9 +1,19 @@
 Qiime Taxonomic Analysis (after Kraken2)
 
-# Create Alpha Diversity boxplots and metrics
+# Create Alpha Diversity boxplots and metrics (genus and species level tables)
 
 ## -------------------------------
-## Step 1: Calculate diversity metrics (no phylogenetic tree)
+## Step 1: Collapse overal freq table to genus level
+## -------------------------------
+
+qiime taxa collapse \
+  --i-table table.qza \
+  --i-taxonomy taxa.qza \
+  --p-level 7 \
+  --o-collapsed-table ovrerall_genus_table.qza 
+
+## -------------------------------
+## Step 2: Calculate diversity metrics (no phylogenetic tree)
 ## -------------------------------
 
 ### Determine sampling depth from rarefaction curves/summary table
