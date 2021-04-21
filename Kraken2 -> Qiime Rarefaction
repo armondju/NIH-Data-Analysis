@@ -58,8 +58,8 @@ qiime tools export \
 
 qiime diversity alpha-rarefaction \
   --i-table bacteria_only.qza \
-  --p-max-depth 500000 \
-  --m-metadata-file sample-metadata.txt \
+  --p-max-depth 1000000 \
+  --p-steps 30 \
   --o-visualization bacteria_alpha-rarefaction.qzv
   
 ##--------------------------------
@@ -92,8 +92,8 @@ qiime tools export \
 
 qiime diversity alpha-rarefaction \
   --i-table eukaryota_only.qza \
-  --p-max-depth TBD \
-  --m-metadata-file sample-metadata.tsv \
+  --p-max-depth 30000 \
+  --p-steps 20 \
   --o-visualization eukaryota_alpha-rarefaction.qzv
   
 ##--------------------------------
@@ -126,8 +126,8 @@ qiime tools export \
 
 qiime diversity alpha-rarefaction \
   --i-table archaea_only.qza \
-  --p-max-depth TBD \
-  --m-metadata-file sample-metadata.tsv \
+  --p-max-depth 2000 \
+  --p-steps 20 \
   --o-visualization archaea_alpha-rarefaction.qzv
   
 ##--------------------------------
@@ -160,8 +160,8 @@ qiime tools export \
 
 qiime diversity alpha-rarefaction \
   --i-table viruses_only.qza \
-  --p-max-depth TBD \
-  --m-metadata-file sample-metadata.tsv \
+  --p-max-depth 5000 \
+  --p-steps 20 \
   --o-visualization viruses_alpha-rarefaction.qzv
   
 ##--------------------------------
