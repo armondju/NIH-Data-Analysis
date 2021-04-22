@@ -58,8 +58,8 @@ qiime tools export \
 
 qiime diversity alpha-rarefaction \
   --i-table bacteria_species.qza \
-  --p-max-depth 5000000 \
-  --p-steps 100 \
+  --p-max-depth 1000000 \
+  --p-steps 5 \
   --o-visualization bacteria_alpha-rarefaction.qzv
   
 ##--------------------------------
