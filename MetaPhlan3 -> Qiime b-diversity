@@ -8,27 +8,27 @@ Qiime Taxonomic Analysis (after MetaPhlan3)
 
 ### Bray_Curtis metric
 qiime diversity beta-group-significance \
-  --i-distance-matrix core-metrics-results/bray_curtis_distance_matrix.qza \
-  --m-metadata-file sample-metadata.txt \
+  --i-distance-matrix core-metrics-results_species/bray_curtis_distance_matrix.qza \
+  --m-metadata-file sample-metadata_2.txt \
   --m-metadata-column group \
-  --o-visualization core-metrics-results/bray_curtis_group_significance.qzv \
+  --o-visualization core-metrics-results_species/bray_curtis_group_significance.qzv \
   --p-pairwise
   
 ### Bray_Curtis metric
 qiime diversity beta-group-significance \
-  --i-distance-matrix core-metrics-results/bray_curtis_distance_matrix.qza \
-  --m-metadata-file sample-metadata.txt \
+  --i-distance-matrix core-metrics-results_species/bray_curtis_distance_matrix.qza \
+  --m-metadata-file sample-metadata_2.txt \
   --m-metadata-column study \
-  --o-visualization core-metrics-results/bray_curtis_study_significance.qzv \
+  --o-visualization core-metrics-results_species/bray_curtis_study_significance.qzv \
   --p-pairwise  
   
-### Jaccard metric
+### Bray_Curtis metric
 qiime diversity beta-group-significance \
-  --i-distance-matrix core-metrics-results/jaccard_distance_matrix.qza \
-  --m-metadata-file sample-metadata.txt \
-  --m-metadata-column group \
-  --o-visualization core-metrics-results/jaccard_group_significance.qzv \
-  --p-pairwise
+  --i-distance-matrix core-metrics-results_species/bray_curtis_distance_matrix.qza \
+  --m-metadata-file sample-metadata_2.txt \
+  --m-metadata-column GbNAHS \
+  --o-visualization core-metrics-results_species/bray_curtis_GbNAHS_significance.qzv \
+  --p-pairwise  
   
 ## -------------------------------
 ## Step 3: Visualize in qiime2 viewer
