@@ -10,7 +10,7 @@ Qiime Taxonomic Analysis (after MetaPhlan3)
 cd /projects/academic/pidiazmo/Projects/Shotgun_summary/NIH_result_summary/MetaPhlan3_Qiime/
 
 ### Convert classic table to biom table (raw frequency)
-biom convert -i MetaPhlan3_NIH_table.txt -o table.from_txt_json.biom --table-type="OTU table" --to-json
+biom convert -i MetaPhlan3_Bacteria_species.txt -o bacteria_species_table.from_txt_json.biom --table-type="OTU table" --to-json
 
 ##--------------------------------
 ## Step 2: Import frequency & taxa tables to Qiime
@@ -21,10 +21,10 @@ module load qiime2
 
 ### Import frequency table to Qiime (create qiime artifact)
 qiime tools import \
-  --input-path table.from_txt_json.biom \
+  --input-path bacteria_species_table.from_txt_json.biom \
   --type 'FeatureTable[Frequency]' \
   --input-format BIOMV100Format \
-  --output-path table.qza
+  --output-path bacteria_species.qza
   
 ### Import taxonomy table to Qiime (create qiime artifact)
 qiime tools import \
@@ -39,8 +39,8 @@ qiime tools import \
 
 ### Summarize feature table
 qiime feature-table summarize \
-  --i-table table.qza \
-  --o-visualization overall_summary
+  --i-table bacteria_species.qza \
+  --o-visualization bacteria_species_summary
   
 ### Export summary and determine what feature frequency (a raw number) is 1% of total feature frequency from summary
 qiime tools export \
@@ -52,19 +52,19 @@ qiime tools export \
 ## -------------------------------  
 
 qiime feature-table filter-features \
-  --i-table table.qza \
-  --p-min-frequency 23018847 \
-  --o-filtered-table overall_freq_filtered_table.qza
+  --i-table bacteria_phyla.qza \
+  --p-min-frequency 3288376 \
+  --o-filtered-table freq_bacteria_phyla.qza
 
 ##--------------------------------
 ## Step 5: Visualize Barchart
 ## ------------------------------- 
 ### Visualize barchart
 qiime taxa barplot \
-  --i-table overall_freq_filtered_table.qza \
+  --i-table freq_bacteria_species.qza \
   --i-taxonomy taxa.qza \
-  --m-metadata-file sample-metadata.txt \
-  --o-visualization overall_taxa-bar-plots.qzv
+  --m-metadata-file sample-metadata_2.txt \
+  --o-visualization bacteria_species_bar-plots.qzv
   
 ##--------------------------------
 ## Step 6: View barchart in qiime2 viewer
