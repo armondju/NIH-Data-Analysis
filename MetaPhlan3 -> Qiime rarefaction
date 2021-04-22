@@ -57,9 +57,9 @@ qiime tools export \
 ## -------------------------------  
 
 qiime diversity alpha-rarefaction \
-  --i-table bacteria_only.qza \
-  --p-max-depth 500000 \
-  --m-metadata-file sample-metadata.txt \
+  --i-table bacteria_species.qza \
+  --p-max-depth 5000000 \
+  --p-steps 100 \
   --o-visualization bacteria_alpha-rarefaction.qzv
   
 ##--------------------------------
