@@ -9,10 +9,10 @@ Qiime Taxonomic Analysis (after MetaPhlan3)
 ### Determine sampling depth from rarefaction curves/summary table
 ### Calculate diversity metrics (alpha + beta)
 qiime diversity core-metrics \
-  --i-table table.qza \
-  --p-sampling-depth 12000000 \
-  --m-metadata-file sample-metadata.txt \
-  --output-dir core-metrics-results
+  --i-table bacteria_species.qza \
+  --p-sampling-depth 847308 \
+  --m-metadata-file sample-metadata_2.txt \
+  --output-dir core-metrics-results_species
 
 ## -------------------------------
 ## Step 2: Test for relationships between a-diversity and metadata
@@ -22,21 +22,21 @@ qiime diversity core-metrics \
 
 ### Evenness metric
 qiime diversity alpha-group-significance \
-  --i-alpha-diversity core-metrics-results/evenness_vector.qza \
-  --m-metadata-file sample-metadata.txt \
-  --o-visualization core-metrics-results/evenness-group-significance.qzv
+  --i-alpha-diversity core-metrics-results_species/evenness_vector.qza \
+  --m-metadata-file sample-metadata_2.txt \
+  --o-visualization core-metrics-results_species/evenness-group-significance.qzv
   
 ### Shannon metric
 qiime diversity alpha-group-significance \
-  --i-alpha-diversity core-metrics-results/shannon_vector.qza \
-  --m-metadata-file sample-metadata.txt \
-  --o-visualization core-metrics-results/shannon_group-significance.qzv
+  --i-alpha-diversity core-metrics-results_species/shannon_vector.qza \
+  --m-metadata-file sample-metadata_2.txt \
+  --o-visualization core-metrics-results_species/shannon_group-significance.qzv
 
 ### Observed OTUs metric
 qiime diversity alpha-group-significance \
-  --i-alpha-diversity core-metrics-results/observed_otus_vector.qza \
-  --m-metadata-file sample-metadata.txt \
-  --o-visualization core-metrics-results/observed_otus_group-significance.qzv
+  --i-alpha-diversity core-metrics-results_species/observed_otus_vector.qza \
+  --m-metadata-file sample-metadata_2.txt \
+  --o-visualization core-metrics-results_species/observed_otus_group-significance.qzv
 
 ## -------------------------------
 ## Step 3: Visualize in qiim2 viewer
