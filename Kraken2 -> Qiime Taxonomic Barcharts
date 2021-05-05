@@ -104,17 +104,18 @@ qiime taxa filter-table \
 
 qiime feature-table filter-features \
   --i-table bacteria_only.qza \
-  --p-min-frequency 2679650 \
+  --p-min-frequency 2674897 \
   --o-filtered-table bacteria_freq_filtered_table.qza  
   
 ##--------------------------------
 ## Step 3: Visualize Barchart
 ## ------------------------------- 
+
 ### Visualize barchart
 qiime taxa barplot \
   --i-table bacteria_freq_filtered_table.qza \
   --i-taxonomy taxa.qza \
-  --m-metadata-file sample-metadata.txt \
+  --m-metadata-file sample-metadata_2.txt \
   --o-visualization bacteria_only_bar.qzv 
   
 ##--------------------------------
@@ -156,7 +157,7 @@ qiime tools export \
 
 qiime feature-table filter-features \
   --i-table eukaryota_only.qza \
-  --p-min-frequency 400 \
+  --p-min-frequency 359 \
   --o-filtered-table freq_eukaryota_only.qza
   
 ##--------------------------------
