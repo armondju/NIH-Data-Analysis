@@ -92,7 +92,7 @@ qiime tools export \
 
 qiime diversity alpha-rarefaction \
   --i-table eukaryota_only.qza \
-  --p-max-depth 30000 \
+  --p-max-depth 7000 \
   --p-steps 20 \
   --o-visualization eukaryota_alpha-rarefaction.qzv
   
