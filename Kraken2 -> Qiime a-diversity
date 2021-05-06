@@ -102,7 +102,7 @@ qiime tools export \
 ### Calculate diversity metrics (alpha + beta)
 qiime diversity core-metrics \
   --i-table ovrerall_species_table.qza \
-  --p-sampling-depth 742170 \
+  --p-sampling-depth 730300 \
   --m-metadata-file sample-metadata_2.txt \
   --output-dir core-metrics-results_species
 
